@@ -1,13 +1,22 @@
+
+import {BrowserRouter} from 'react-router-dom'
+
 import './App.scss';
+
+import Header from './components/Header';
+
+import Routess from './configRoute/Routes';
 
 
 
 function App() {
   
   return (
-    <div className="App">
-      Hello react app movie
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routess />
+
+    </BrowserRouter>
   );
 }
 
