@@ -1,11 +1,11 @@
 import React from 'react'
+import HeroSlide from '../components/HeroSlide'
 
 const Home = () => {
   return (
-    <div>
-      Home
-      <div style={{width: "500px", height:"1000px", background:'red'}}></div>
-    </div>
+    <>
+      <HeroSlide /> 
+    </>
   )
 }
 

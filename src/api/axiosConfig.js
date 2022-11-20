@@ -1,26 +1,39 @@
-import axios from 'axios'
-import querySring from 'query-string'
+import axios from 'axios';
+import queryString from 'query-string';
 
-import apiConfig from './apiConfig'
+import apiConfig from './apiConfig';
+
+
+// const axiosClient = async (url, params) => {
+    
+//     const stringified = queryString.stringify({...params, api_key: apiConfig.apiKey});
+//     console.log(stringified)
+// }
+
 
 const axiosClient = axios.create({
     baseURL: apiConfig.baseUrl,
     headers: {
         'Content-Type': 'application/json'
     },
-    paramsSerializer: params => querySring.stringify({...params, api_key: apiConfig.apiKey})
-})
+    params: {
+        api_key: apiConfig.apiKey,
+        page:1,
+    },
+    // paramsSerializer: params => queryString.stringify({...params, api_key: apiConfig.apiKey})
 
-axiosClient.interceptors.response.use(async (config) => config)
+});
+
+axiosClient.interceptors.request.use(async (config) => config);
+
 axiosClient.interceptors.response.use((response) => {
-    if(response && response.data) {
-        return response.data
+    if (response && response.data) {
+        return response.data;
     }
 
-    return response
- }, (err) => {
-    console.log('LOI')
-    throw err
- })
+    return response;
+}, (error) => {
+    throw error;
+});
 
-export default axiosClient
+export default axiosClient;
